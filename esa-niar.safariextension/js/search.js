@@ -1,18 +1,13 @@
-var polling = window.setInterval(function() {
-  var container = document.getElementById('rhs_block');
-  if (container == null) {
+safari.self.addEventListener('message', function(event) {
+  if (event.name === 'searchResult') {
+    console.log(event.message);
     return;
   }
 
-  window.clearInterval(polling);
-  
-  var result_list = document.createElement('div');
-  result_list.innerHTML = "<ul>" + 
-    "<li>ONE</li>" +
-    "<li>TWO</li>" +
-    "<li>THREE</li>" +
-    "</ul>";
-  
-  console.log(container);
-  container.insertBefore(result_list, container.children[0]);
-}, 100);
+  if (event.name === 'searchError') {
+    console.error(event.message);
+    return;
+  }
+});
+
+safari.self.tab.dispatchMessage('search', 'design');
