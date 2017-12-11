@@ -10,4 +10,6 @@ safari.self.addEventListener('message', function(event) {
   }
 });
 
-safari.self.tab.dispatchMessage('search', 'design');
+var input = document.getElementById('lst-ib');
+
+safari.self.tab.dispatchMessage('search', input.value);

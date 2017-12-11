@@ -1,5 +1,3 @@
-
-
 safari.application.addEventListener('message', function(event) {
   if (event.name === 'search') {
     var query = event.message;
@@ -8,7 +6,7 @@ safari.application.addEventListener('message', function(event) {
     var team = safari.extension.settings.esaTeam;
 
     var xhr = new XMLHttpRequest();
-    xhr.open('GET', 'https://api.esa.io/v1/teams/' + team + '/posts', true);
+    xhr.open('GET', 'https://api.esa.io/v1/teams/' + team + '/posts?q=' + query, true);
     xhr.setRequestHeader('Authorization', 'Bearer ' + apiKey);
     xhr.onload = function (e) {
       if (xhr.readyState === 4) {
